@@ -7,7 +7,7 @@ import { Good } from './types/Good';
 
 export const App: React.FC = () => {
   const [goods, setGoods] = useState<Good[]>([]);
-  const [, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   return (
     <div className="App">
@@ -49,8 +49,11 @@ export const App: React.FC = () => {
       >
         Load red goods
       </button>
-
-      <MemoGoodsList goods={goods} />
+      {error ? (
+        <div className="error">{error}</div>
+      ) : (
+        <MemoGoodsList goods={goods} />
+      )}
     </div>
   );
 };
